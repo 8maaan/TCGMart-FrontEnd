@@ -1,0 +1,71 @@
+.container {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(0, 0, 0);
+  }
+  
+  .fields-container {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+    height: 100vh
+    
+  }
+  
+  .side-bg {
+    background-image: url("https://i.imgur.com/KSYXe4Y.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* background-color: yellow; */
+    width: 20%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    /* border: solid black 1px; */
+  }
+  .user-fields {
+    width: 90%;
+    /* border: solid black 1px; */
+    padding: 2.5%;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    justify-content: center; 
+  }
+  .user-fields .MuiTextField-root {
+    margin-top: 1%;
+    width: 20%;
+  }
+
+  .user-fields .MuiButton-root {
+    margin-top: 1%;
+    width: 20%;
+    font-size: small;
+  }
+
+  .agreement-policy-sentence{
+    margin: 0;
+    text-align: left;
+    width: 20%;
+    font-size: 10px;
+    /* border: solid black 1px; */
+  }
+
+  .text-signup{
+    font-size: calc(10px + 2vmin);
+    margin: 0;
+  }
+  .text-signin{
+    font-size: 70%;
+    margin: 0;
+    margin-top: 1%;
+  }
+
+  
+  
