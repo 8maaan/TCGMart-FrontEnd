@@ -13,6 +13,8 @@ function App() {
         email_address: "",
         mssngr_link: ""
     });
+
+    const [retypePassword, setRetypePassword] = useState('');
     
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
@@ -74,9 +76,6 @@ function App() {
             case "password":
               setPasswordError(!validatePassword(value));
               break;
-            case "retypePassword":
-              setRetypePasswordError(value !== user.password);
-              break;
             case "mssngr_link":
               setMssngrLinkError(!validateMssngrLink(value));
               break;
@@ -85,7 +84,39 @@ function App() {
         }
     };
 
+    const handleRetypePasswordChange = (event) => {
+        const value = event.target.value;
+        setRetypePassword(value);
+        setRetypePasswordError(value !== user.password);
+    };
+
+    const clearUserValues = () => {
+        setUser({
+            username: '',
+            password: '',
+            phone_num: '',
+            email_address: '',
+            mssngr_link: ''
+        });
+    };
+
+    const isEmpty = (value) => value.trim() === '';
+
+    const hasError = (value, error) => isEmpty(value) || error;
+
     const handleSubmit = async () => {
+        if (
+            hasError(user.username, usernameError) ||
+            hasError(user.password, passwordError) ||
+            hasError(user.phone_num, phoneError) ||
+            hasError(user.email_address, emailError) ||
+            hasError(user.mssngr_link, mssngrLinkError) ||
+            hasError(retypePassword, retypePasswordError)
+        ) {
+            alert('Please fill in all required fields and fix errors.');
+            return;
+        }
+
         const checkUser =  await usernameExists();
         if(checkUser === false){
             const result = await insertUser(user);
@@ -94,6 +125,8 @@ function App() {
             }else{
                 alert(result.message);
             }
+            clearUserValues();
+            setRetypePassword('');
         }else{
             alert(`Username ${user.username} already exists`)
         }    
@@ -140,8 +173,8 @@ function App() {
                     label="Retype Password"
                     name="retypePassword"
                     size="small"
-                    // value={user.retypePassword}
-                    onChange={handleChange}
+                    value={retypePassword}
+                    onChange={handleRetypePasswordChange}
                     error={retypePasswordError}
                     helperText={retypePasswordError ? 'Passwords do not match' : ''}
                 />

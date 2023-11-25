@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// apiServices.js
-
+// For checking if username exists or not
 export const checkUsernameValidity = async (username) => {
     try {
       const response = await axios.get(`http://localhost:8080/tcg/users/checkUserValidity?username=${username}`);
@@ -12,6 +11,7 @@ export const checkUsernameValidity = async (username) => {
     }
   };
 
+// For creating/registering new user
 export const insertUser = async (user) => {
     try {
       await axios.post("http://localhost:8080/tcg/users/insertUser", user);
@@ -22,3 +22,11 @@ export const insertUser = async (user) => {
     }
 };
 
+export const checkLoginCredentials = async(username, password) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/tcg/users/checkLoginCredentials?username=${username}&password=${password}`);
+    return { success: response.data }
+  }catch (error) {
+    console.log(error);
+  }
+}
