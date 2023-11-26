@@ -1,72 +1,124 @@
-
-import { TextField, Button } from '@mui/material';
-import './RegisterLogin.css'
+import { TextField, Button, Snackbar, Alert } from '@mui/material';
+import './RegisterLogin.css';
 import { useState } from 'react';
 import { checkLoginCredentials } from '../services/apiServices';
 
-
 function App() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
-    const handleSubmit = async () => {
-        if(password.trim() === '' || password.trim() === ''){
-            alert('Please fill in all fields.');
-            return;
-        }
+  const [open, setOpen] = useState(false);
+  const handleCloseBlankFields = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
-        const result = await checkLoginCredentials(username, password);
-        alert(result.success ? 'You have successfully logged-in.' : 'Invalid log-in credentials, please try again.');
-    };
+  const[snackbarInvalid, setSnackbarInvalid] = useState(false);
+  const handleCloseInvalid = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarInvalid(false);
+  };
 
-    return (
-        <div className="container">
-            <div className="fields-container">
+  const [snackbarSucess, setSnackbarSuccess] = useState(false)
+  const handleCloseSuccess = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarSuccess(false);
+  };
 
-                {/* For side background */}
-                <div className="side-bg">
-                </div>
+  const handleSubmit = async () => {
+    if (password.trim() === '' || password.trim() === '') {
+      setOpen(true);
+      return;
+    }
 
-                {/* For TextFields */}
-                <div className="user-fields">
-                    <p className="text-signup">Sign In</p>
-                    <div className="agreement-policy-sentence">
-                        <p>By continuing, you agree to our User Agreement and Privacy Policy</p>
-                    </div>
-                    <TextField
-                        variant="outlined"
-                        label="Username"
-                        name="username"
-                        size="small"
-                        value={username}
-                        onChange={handleUsernameChange}                      
-                    />
+    try{
+      const result = await checkLoginCredentials(username, password);
+      console.log(result);
+      if (result !== -1) {
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("uid", result);
+        setSnackbarSuccess(true);
+      } else {
+        setSnackbarInvalid(true);
+      }
+    }catch(error){
+      alert('Check Eclipse.');
+    }
+    
+  };
 
-                    <TextField
-                        type="password"
-                        variant="outlined"
-                        label="Password"
-                        name="password"
-                        size="small"
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
+  return (
+    <div className="container">
+      <div className="fields-container">
+        {/* For side background */}
+        <div className="side-bg"></div>
 
-                    <Button variant="contained" onClick={() => { handleSubmit();}}>Sign In</Button>
+        {/* For TextFields */}
+        <div className="user-fields">
+          <p className="text-signup">Sign In</p>
+          <div className="agreement-policy-sentence">
+            <p>By continuing, you agree to our User Agreement and Privacy Policy</p>
+          </div>
+          <TextField
+            variant="outlined"
+            label="Username"
+            name="username"
+            size="small"
+            value={username}
+            onChange={handleUsernameChange}
+          />
 
-                    <p className="text-signin">New to TCGMart? SIGN UP</p>
-                </div>
-            </div>
+          <TextField
+            type="password"
+            variant="outlined"
+            label="Password"
+            name="password"
+            size="small"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+
+          <Button variant="contained" onClick={handleSubmit}>
+            Sign In
+          </Button>
+
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleCloseBlankFields} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+            <Alert onClose={handleCloseBlankFields} severity="warning" sx={{ width: '100%' }}>
+              Please fill in all fields!
+            </Alert>
+          </Snackbar>
+
+          <Snackbar open={snackbarInvalid} autoHideDuration={6000} onClose={handleCloseInvalid} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+            <Alert onClose={handleCloseInvalid} severity="error" sx={{ width: '100%' }}>
+              Invalid login credentials, please try again.
+            </Alert>
+          </Snackbar>
+
+          <Snackbar open={snackbarSucess} autoHideDuration={6000} onClose={handleCloseSuccess} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+            <Alert onClose={handleCloseSuccess} severity="success" sx={{ width: '100%' }}>
+              You are successfully logged-in.
+            </Alert>
+          </Snackbar>
+
+          <p className="text-signin">New to TCGMart? SIGN UP</p>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default App;

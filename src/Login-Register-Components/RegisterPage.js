@@ -1,5 +1,5 @@
 
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Snackbar, Alert } from '@mui/material';
 import './RegisterLogin.css'
 import { useState } from 'react';
 import { insertUser, checkUsernameValidity } from '../services/apiServices';
@@ -101,8 +101,16 @@ function App() {
     };
 
     const isEmpty = (value) => value.trim() === '';
-
     const hasError = (value, error) => isEmpty(value) || error;
+
+    const [open, setOpen] = useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+
+        setOpen(false);
+    };
 
     const handleSubmit = async () => {
         if (
@@ -113,7 +121,8 @@ function App() {
             hasError(user.mssngr_link, mssngrLinkError) ||
             hasError(retypePassword, retypePasswordError)
         ) {
-            alert('Please fill in all required fields and fix errors.');
+            // alert('Please fill in all required fields and fix errors.');
+            setOpen(true);
             return;
         }
 
@@ -216,6 +225,12 @@ function App() {
                 />
 
                 <Button variant="contained" onClick={() => { handleSubmit();}}>Sign Up</Button>
+
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+                    <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+                        Please fill in all fields and input valid formats.
+                    </Alert>
+                </Snackbar>
 
                 <p className="text-signin">Already have an account? SIGN IN</p>
             </div>

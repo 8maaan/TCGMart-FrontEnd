@@ -25,8 +25,8 @@ export const insertUser = async (user) => {
 export const checkLoginCredentials = async(username, password) => {
   try {
     const response = await axios.get(`http://localhost:8080/tcg/users/checkLoginCredentials?username=${username}&password=${password}`);
-    return { success: response.data }
+    return response.data;
   }catch (error) {
-    console.log(error);
+    throw new Error('Error checking login credentials.');
   }
 }

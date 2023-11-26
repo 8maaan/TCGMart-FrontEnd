@@ -5,7 +5,7 @@ import LoginPage from './Login-Register-Components/LoginPage'
 function App() {
   return (
     <div className="App">
-      <RegisterPage/>
+      {/* <RegisterPage/> */}
       <LoginPage/>
     </div>
   );
