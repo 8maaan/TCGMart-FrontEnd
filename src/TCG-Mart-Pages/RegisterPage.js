@@ -1,11 +1,12 @@
 
 import { TextField, Button, Snackbar, Alert } from '@mui/material';
-import './RegisterLogin.css'
+import '../TCG-Mart-CSS-Pages/RegisterLogin.css'
 import { useState } from 'react';
 import { insertUser, checkUsernameValidity } from '../services/apiServices';
+import { Link } from 'react-router-dom';
 
 
-function App() {
+export default function RegisterPage() {
     const [user, setUser] = useState({
         username: "",
         password: "",
@@ -232,11 +233,10 @@ function App() {
                     </Alert>
                 </Snackbar>
 
-                <p className="text-signin">Already have an account? SIGN IN</p>
+                <p className="text-signin">Already have an account? <Link to="/login">SIGN IN</Link></p>
             </div>
             </div>
         </div>
     );
 }
 
-export default App;

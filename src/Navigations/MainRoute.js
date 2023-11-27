@@ -1,9 +1,9 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import LoginPage from '../Login-Register-Components/LoginPage';
+import LoginPage from '../TCG-Mart-Pages/LoginPage';
 import FirstNavi from './firstNavi';
-import HomePage from '../HomePageComponents/HomePage';
-import RegisterPage from '../Login-Register-Components/RegisterPage';
-import MarketPage from '../MarketComponents/MarketPage';
+import HomePage from '../TCG-Mart-Pages/HomePage';
+import RegisterPage from '../TCG-Mart-Pages/RegisterPage';
+import MarketPage from '../TCG-Mart-Pages/MarketPage';
 
 export default function MainRoute(){
     return (

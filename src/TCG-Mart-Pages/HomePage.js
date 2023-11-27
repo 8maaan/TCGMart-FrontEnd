@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './HomePage.css';
+import '../TCG-Mart-CSS-Pages/HomePage.css'
 import React from 'react';
 import axios from "axios";
 import { useEffect, useState } from "react";

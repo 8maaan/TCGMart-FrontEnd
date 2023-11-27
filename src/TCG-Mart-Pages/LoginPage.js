@@ -1,9 +1,10 @@
 import { TextField, Button, Snackbar, Alert } from '@mui/material';
-import './RegisterLogin.css';
+import '../TCG-Mart-CSS-Pages/RegisterLogin.css'
 import { useState } from 'react';
 import { checkLoginCredentials } from '../services/apiServices';
+import { Link, useNavigate } from 'react-router-dom';
 
-function App() {
+export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -39,26 +40,28 @@ function App() {
     setSnackbarSuccess(false);
   };
 
+  const navigateTo = useNavigate();
   const handleSubmit = async () => {
     if (password.trim() === '' || password.trim() === '') {
       setOpen(true);
       return;
     }
-
     try{
       const result = await checkLoginCredentials(username, password);
       console.log(result);
       if (result !== -1) {
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("uid", result);
         setSnackbarSuccess(true);
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("username", username);
+        localStorage.setItem("uid", result);
+        window.history.replaceState(null, null, '/');
+        navigateTo("/");
       } else {
         setSnackbarInvalid(true);
       }
     }catch(error){
       alert('Check Eclipse.');
-    }
-    
+    }   
   };
 
   return (
@@ -114,11 +117,10 @@ function App() {
             </Alert>
           </Snackbar>
 
-          <p className="text-signin">New to TCGMart? SIGN UP</p>
+          <p className="text-signin">New to TCGMart? <Link to="/register">SIGN UP</Link></p>
         </div>
       </div>
     </div>
   );
 }
 
-export default App;
