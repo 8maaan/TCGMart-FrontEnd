@@ -23,9 +23,9 @@ export default function HomePage(){
             });
     },[]);
 
-    function Buttontest(){
-        console.log(cards);
-    };
+    // function Buttontest(){
+    //     console.log(cards);
+    // };
 
     return (
         <>
@@ -44,7 +44,9 @@ export default function HomePage(){
                 </div>
                 <div className='card-lists'>
                     {cards.map((cards, id)=>{
-                        return  <div className='card' key={id}>
+                        return(
+                            <Link to={`/cards/${cards.cardid}`} key={cards.id}>
+                                <div className='card' key={id}>
                                     <div className='card-image-area'>
                                         <div className='card-image-size'>
                                             <img src={cards.cardImg} alt='card pic' className='card-image'/>
@@ -53,7 +55,8 @@ export default function HomePage(){
                                     <p>{cards.cardTitle}</p>
                                     <p className='card-price'>₱{cards.cardPrice}</p>
                                 </div>
-                    })}
+                            </Link>
+                    )})}
                 </div>
             </div>
         </div>

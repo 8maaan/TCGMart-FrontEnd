@@ -1,10 +1,18 @@
 import { TextField, Button, Snackbar, Alert } from '@mui/material';
 import '../TCG-Mart-CSS-Pages/RegisterLogin.css'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { checkLoginCredentials } from '../services/apiServices';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  useEffect(() => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      if (isLoggedIn) {
+        navigate('/');
+      }
+  }, [navigate]);
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
