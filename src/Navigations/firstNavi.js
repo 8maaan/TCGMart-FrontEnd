@@ -17,9 +17,13 @@ export default function FirstNavi(){
             <div className='navi-right'>
                 {isLoggedIn === 'true' ? (
                     <>
-                        <Link to='/profile'><h2>{username}</h2></Link>
-                        <Link to='/sellcard'><h2>Sell Card</h2></Link>
                         <Link to='/listings'><h2>Listings</h2></Link>
+                        <Link to='/sellcard'><h2>Sell Card</h2></Link>
+                        <Link to='/profile' className='navi-username-area'>
+                            <div className='navi-profile-picture'>
+                                <img src='https://i.imgur.com/BFPW8Kw.png' alt="User profile picture" className='user-profile-picture'/>
+                            </div>
+                            <h2>{username}</h2>
                     </>
                 ) : (
                     <Link to='/login'><h2>Login/Register</h2></Link>
