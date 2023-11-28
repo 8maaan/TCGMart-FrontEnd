@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCardByCardID, getSellerDetails } from '../services/apiServices';
+import '../TCG-Mart-CSS-Pages/CardPage.css';
+import FirstNavi from '../Navigations/firstNavi';
 
 const CardPage = () => {
   const { cardId } = useParams();
@@ -40,6 +42,8 @@ const CardPage = () => {
 
   return (
     <div>
+      <FirstNavi />
+      <div className="card-page-navi"></div>
       <h1>Card Details</h1>
       <p>Card ID: {cardId}</p>
       <p>{card.cardTitle}</p>
