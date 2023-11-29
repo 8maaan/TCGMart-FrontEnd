@@ -7,7 +7,7 @@ import MarketPage from './TCG-Mart-Pages/MarketPage';
 import NotFoundPage from './TCG-Mart-Pages/NotFoundPage';
 import CardPage from './TCG-Mart-Pages/CardPage';
 import ProfilePage from './TCG-Mart-Pages/ProfilePage';
-import ListingCardPage from './TCG-Mart-Pages/ListingCardPage';
+import ListingCardPage from './TCG-Mart-Pages/ListCardPage';
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";

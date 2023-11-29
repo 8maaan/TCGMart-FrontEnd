@@ -4,7 +4,9 @@ export default function ListingCardPage() {
     return (
         <div>
             <SecondNavi />
-            <p>test</p>
+            <div>
+                
+            </div>
         </div>
     );
 }
