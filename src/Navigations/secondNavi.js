@@ -1,7 +1,7 @@
 import './secondNavi.css';
 import { Link } from 'react-router-dom';
 
-const secondNavi = () => {
+const SecondNavi = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     const username = localStorage.getItem("username");
     return(
@@ -34,4 +34,4 @@ const secondNavi = () => {
     );
 }
 
-export default secondNavi;
+export default SecondNavi;
