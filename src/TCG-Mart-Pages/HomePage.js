@@ -44,6 +44,10 @@ export default function HomePage(){
                 </div>
                 <div className='card-lists'>
                     {cards.map((cards, id)=>{
+                        const shortenedTitle = cards && cards.cardTitle && cards.cardTitle.length > 33
+                        ? `${cards.cardTitle.substring(0, 30)}...`
+                        : (cards && cards.cardTitle) || '';
+
                         return(
                             <Link to={`/cards/${cards.cardid}`} key={cards.id}>
                                 <div className='card' key={id}>
@@ -52,7 +56,7 @@ export default function HomePage(){
                                             <img src={cards.cardImg} alt='card pic' className='card-image'/>
                                         </div>
                                     </div>
-                                    <p>{cards.cardTitle}</p>
+                                    <p>{shortenedTitle}</p>
                                     <p className='card-price'>₱{cards.cardPrice}</p>
                                 </div>
                             </Link>
