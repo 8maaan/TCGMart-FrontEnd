@@ -1,0 +1,39 @@
+.list-container{
+    display: inline-block;
+    width: 50%;
+    border: solid black;
+    margin-top: 1%;
+}
+
+.list-container p{
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.list-fields-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-fields-container .MuiTextField-root {
+    margin-top: 2.5%;
+    margin-right: 15%;
+    width: 45%;   
+}
+
+.list-fields-container p{
+    margin-right: 2%;
+    margin-top: 3%; 
+    width: 145px;
+    text-align: right; 
+}
+
+.MuiButton-root{
+    width: 15%;
+    margin-top:1.5%;
+    margin-bottom:1.5%;
+}
+
+
