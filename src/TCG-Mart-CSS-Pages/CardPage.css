@@ -34,13 +34,14 @@ body{
 }
 
 .card-attributes-left{
-    width: 50%;
-    text-align: right;
+    width: 32%;
+    min-width: fit-content;
+    text-align: left;
     font-weight: 600;
 }
 
 .card-attributes-right{
-    width: 50%;
+    width: 68%;
     min-width: fit-content;
     white-space: nowrap;
     margin-left: 5px;
