@@ -91,6 +91,7 @@
     min-height: 150px;
     max-height: fit-content;
     box-shadow: 0 5px 5px rgba(154, 160, 185, 0.311), 0 5px 3px rgba(166,173,201,.2);
+    text-align: left;
 }
 
 .card-details-lower{
