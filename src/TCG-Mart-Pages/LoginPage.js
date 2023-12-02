@@ -64,6 +64,7 @@ export default function LoginPage() {
         localStorage.setItem("uid", result);
         window.history.replaceState(null, null, '/');
         navigateTo("/");
+        navigateTo(0);
       } else {
         setSnackbarInvalid(true);
       }

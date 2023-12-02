@@ -1,68 +1,251 @@
-import { Button, TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { Alert, Autocomplete, Button, InputAdornment, Snackbar, TextField } from '@mui/material';
 import SecondNavi from '../Navigations/secondNavi';
 import '../TCG-Mart-CSS-Pages/ListCardPage.css';
+import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
+import LooksTwoOutlinedIcon from '@mui/icons-material/LooksTwoOutlined';
 import ImageUploader from '../Cloudinary/ImageUploader';
-import { useState } from 'react';
+import { insertCard } from '../services/apiServices';
+import {ConfirmationDialog} from '../Dialogues/Dialogues'
+
+// Reusable TextField component with helper text
+const CardTextField = ({ label, name, value, onChange, multiline, rows, startAdornment, helperText }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleTextFieldClick = () => {
+    setIsClicked(true);
+  };
+
+  const handleTextFieldBlur = () => {
+    setIsClicked(false);
+  };
+
+  return (
+    <div className="list-fields-container">
+      <TextField
+        size="small"
+        label={label}
+        name={name}
+        value={value}
+        onChange={onChange}
+        multiline={multiline}
+        rows={rows}
+        helperText={isClicked ? helperText : ''}
+        onClick={handleTextFieldClick}
+        onBlur={handleTextFieldBlur}
+        InputProps={{ startAdornment: startAdornment && <InputAdornment position="start">{startAdornment}</InputAdornment> }}
+      />
+    </div>
+  );
+};
 
 export default function ListCardPage() {
-    const [card, setCard]= useState({
-        cardTitle: "",
-        cardImg: "",
-        cardCondition: "",
-        cardNumRarity: "",
-        cardTypeHPStage: "",
-        cardPrice: "",
-        cardDescription: "",
-        uid: "1"
-    })
+  const [card, setCard] = useState({
+    cardTitle: "",
+    cardImg: "",
+    cardCondition: "",
+    cardNumRarity: "",
+    cardTypeHPStage: "",
+    cardPrice: "",
+    cardDescription: "",
+    uid: localStorage.getItem("uid")
+  });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setCard((prevCard) => ({
-          ...prevCard,
-          [name]: value,
-        }));
-    };
+  const updateCardImg = (imgUrl) => {
+    setCard((prevCard) => ({
+      ...prevCard,
+      cardImg: imgUrl
+    }));
+  };
 
-    const updateCardImg = (imgUrl) => {
-        setCard((prevCard) => ({
-          ...prevCard,
-          cardImg: imgUrl
-        }));
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCard({
+      ...card,
+      [name]: value,
+    });
+  };
 
-    const FormField = ({ fieldName, label }) => (
-        <div className="list-fields-container">
-          <p>{fieldName}</p>
-          <TextField size="small" label={label}/>
+  const isCardAttributesEmpty = () => {
+    for (const key in card) {
+      if (card.hasOwnProperty(key) && card[key] === "") {
+        return true; // At least one field is empty
+      }
+    }
+    return false; // All fields are filled
+  };
+
+  const resetCardValues = () => {
+    setCard({
+      cardTitle: "",
+      cardImg: "",
+      cardCondition: "",
+      cardNumRarity: "",
+      cardTypeHPStage: "",
+      cardPrice: "",
+      cardDescription: "",
+      uid: localStorage.getItem("uid")
+    });
+  };
+
+  const [blankFields, setBlankFields] = useState(false);
+  const handleCloseBlankFields = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setBlankFields(false);
+  };
+
+  const [snackbarSucess, setSnackbarSuccess] = useState(false)
+  const handleCloseSuccess = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarSuccess(false);
+  };
+  const[snackbarInvalid, setSnackbarInvalid] = useState(false);
+  const handleCloseInvalid = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarInvalid(false);
+  };
+
+  const [openDialogue, setOpenDialogue] = useState(false);
+  const [confirmationStatus, setConfirmationStatus] = useState(false);
+  const handleOpenDialog = () => {
+    setOpenDialogue(true);
+  };
+  const handleConfirmationDialogClose = (confirmed) => {
+    setOpenDialogue(false);
+    setConfirmationStatus(confirmed);
+    console.log(confirmationStatus);
+
+    if (confirmed) {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = async () => {
+    if(isCardAttributesEmpty()){
+      setBlankFields(true);
+      return;
+    }
+    try{
+      const result = await insertCard(card);
+      console.log(result);
+      if (result.success) {
+        resetCardValues();
+        setSnackbarSuccess(true);
+      } else {
+        setSnackbarInvalid(true);
+      }
+    }catch(error){
+      alert('Check Eclipse.');
+    }   
+  };
+
+  const cardConditionOptions = ['Near Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged'];
+
+  return (
+    <div>
+      <SecondNavi />
+      <div className="list-container">
+        {/* Section 1 */}
+        <div className="section">
+          <LooksOneOutlinedIcon color="primary" fontSize="large" />
+          <p className=''>Basic Card Details</p>
         </div>
-    );
-    
-    return (
-        <div>
-            <SecondNavi />           
-            <div className="list-container">
-                <br></br>
-                <p>Listing Form</p>
-                <br></br>
-                <FormField fieldName="Card Name" />
-                {/* to be fixed */}
-                {/* <ImageUploader updateCardImg={updateCardImg} /> */}
-                <FormField fieldName="Condition" />
-                <FormField fieldName="Card Number/Rarity" />
-                <FormField fieldName="Card Type/HP/Stage" />
-                <FormField fieldName="Price" />
-                <div className="list-fields-container">
-                    <p>Description</p>
-                    <TextField  
-                        id="outlined-multiline-static"
-                        multiline
-                        rows={3}
-                        defaultValue="" />
-                </div>
-                
-                <Button variant="contained" style={{marginTop:'1.5%', marginBottom:'1.5%'}}>List</Button>
-            </div>
+        {/* Card Name */}
+        <CardTextField
+          label="Card Name"
+          name="cardTitle"
+          value={card.cardTitle}
+          onChange={handleInputChange}
+          helperText="E.g Shiny Charizard"
+        />
+        {/* Card Condition */}
+        <div className="autocomplete-field-container">
+          <Autocomplete
+            size='small'
+            disablePortal
+            id="combo-box-demo"
+            options={cardConditionOptions}
+            value={card.cardCondition}
+            onChange={(event, newValue) => { handleInputChange({ target: { name: 'cardCondition', value: newValue } }); }}
+            renderInput={(params) => <TextField label="Card Condition" {...params} />}
+          />
         </div>
-    );
+        {/* Card Number/Rarity */}
+        <CardTextField
+          label="Card Number/Rarity"
+          name="cardNumRarity"
+          value={card.cardNumRarity}
+          onChange={handleInputChange}
+          helperText="E.g 100 / Ultra Rare"
+        />
+        {/* Card Type/HP/Stage */}
+        <CardTextField
+          label="Card Type/HP/Stage"
+          name="cardTypeHPStage"
+          value={card.cardTypeHPStage}
+          onChange={handleInputChange}
+          helperText="E.g Fire / 250 / World Stage"
+        />
+        {/* Card Price */}
+        <CardTextField
+          label="Card Price"
+          name="cardPrice"
+          value={card.cardPrice}
+          onChange={handleInputChange}
+          startAdornment="₱"
+        />
+        {/* Section 2  */}
+        <div className="section">
+          <LooksTwoOutlinedIcon color="primary" fontSize="large" />
+          <p className=''>Additional Details</p>
+        </div>
+        {/* Upload Image */}
+        <ImageUploader updateCardImg={updateCardImg} />
+        {/* Description */}
+        <CardTextField
+          label="Description"
+          name="cardDescription"
+          value={card.cardDescription}
+          onChange={handleInputChange}
+          multiline
+          rows="4"
+        />
+
+        <Button variant="contained" 
+          style={{ marginTop: '1.5%', marginBottom: '1.5%' }}
+          onClick={handleOpenDialog}>
+          List
+        </Button>
+        
+        {/* Snackbar for when submit but there are blank fields */}
+        <Snackbar open={blankFields} autoHideDuration={3000} onClose={handleCloseBlankFields} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+          <Alert onClose={handleCloseBlankFields} severity="warning" sx={{ width: '100%' }}>
+            Please fill in all fields!
+          </Alert>
+        </Snackbar>
+
+        {/* Snackbar for successfully listing an item */}
+        <Snackbar open={snackbarSucess} autoHideDuration={3000} onClose={handleCloseSuccess} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+          <Alert onClose={handleCloseSuccess} severity="success" sx={{ width: '100%' }}>
+            Congrats! Your card has successfully been listed 🎉
+          </Alert>
+        </Snackbar>
+
+        {/* Snackbar for error */}
+        <Snackbar open={snackbarInvalid} autoHideDuration={3000} onClose={handleCloseInvalid} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+          <Alert onClose={handleCloseInvalid} severity="error" sx={{ width: '100%' }}>
+            Error. Couldn't list your item. Try again later.
+          </Alert>
+        </Snackbar>
+
+        {openDialogue && <ConfirmationDialog status={true} onClose={handleConfirmationDialogClose} title={"Are you sure you want to list this item?"} />}
+      </div>
+    </div>
+  );
 }

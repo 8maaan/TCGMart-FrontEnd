@@ -51,3 +51,13 @@ export const getSellerDetails = async(uid) => {
     throw new Error('Error, could not find  card.', error);
   }
 }
+
+export const insertCard = async (card) => {
+  try {
+    await axios.post("http://localhost:8080/tcg/card/insertCard", card);
+    return { success: true, message: "Card Successfuly listed" };
+  } catch (error) {
+    console.error("Error:", error);
+    return { success: false, message: `Error, please check console. ${error}` };
+  }
+}

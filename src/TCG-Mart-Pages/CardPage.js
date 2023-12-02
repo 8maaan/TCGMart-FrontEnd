@@ -64,10 +64,10 @@ const CardPage = () => {
         <div className='card-details-upper'>
           <div className='card-picture' style={{backgroundImage: `url(${card.cardImg})`}}></div>
           <div className='card-details'>
-            <h2>{card.cardTitle}</h2>
+            <h2 style={{marginLeft:'8%'}}>{card.cardTitle}</h2>
             <div className='card-attributes'>
               <div className='card-attributes-left'>
-                <p>Condition:</p>
+                <p>Card Condition:</p>
                 <p>Card Number/Rarity:</p>
                 <p>Card Type/HP/Stage:</p>
               </div>

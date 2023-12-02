@@ -1,33 +1,48 @@
 .list-container{
+    background-color: rgba(245, 245, 245, 0.5);
     display: inline-block;
-    width: 50%;
-    border: solid black;
+    width: 80%;
+    box-shadow: 1px 1px 1px 1px #888888;
+    /* border: solid black; */
     margin-top: 1%;
+    
 }
 
 .list-container p{
-    margin-right: 1%;
     margin-bottom: 1%;
 }
 
+.autocomplete-field-container,
 .list-fields-container {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-right: 15%; */
 }
 
+.autocomplete-field-container .MuiAutocomplete-root,
 .list-fields-container .MuiTextField-root {
-    margin-top: 2.5%;
-    margin-right: 15%;
-    width: 45%;   
+    margin-top: 1.5%;
+    
+    width: 80%;   
+}
+.autocomplete-field-container p,
+.attributeNames{
+    margin-right: 2.5%;
+    margin-top: 3%; 
+    width: 10em;
+    text-align: right; 
 }
 
-.list-fields-container p{
-    margin-right: 2%;
-    margin-top: 3%; 
-    width: 145px;
-    text-align: right; 
+.section{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1%;
 }
 
 .MuiButton-root{
@@ -35,5 +50,118 @@
     margin-top:1.5%;
     margin-bottom:1.5%;
 }
+
+.MuiFormLabel-root {
+  font-size: 13px !important;
+}
+
+
+
+
+/* Extra Small Devices (phones) */
+@media only screen and (max-width: 600px) {
+    .list-container {
+        width: 100%;
+        margin-top: 5%;
+        height: 600px;
+    }
+
+    .list-container p {
+        margin-right: 0;
+        margin-bottom: 2%;
+    }
+
+    .autocomplete-field-container,
+    .list-fields-container {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    .autocomplete-field-container .MuiAutocomplete-root,
+    .list-fields-container .MuiTextField-root {
+        width: 100%;
+        margin-top: 5%;
+        margin-right: 0;
+    }
+
+    .autocomplete-field-container p,
+    .list-fields-container p {
+        margin-right: 0;
+        margin-top: 3%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .MuiButton-root {
+        width: 100%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+}
+
+/* Small Devices (portrait tablets and large phones) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .list-container {
+        width: 70%;
+        margin-top: 3%;
+        height: 550px;
+    }
+
+    .autocomplete-field-container .MuiAutocomplete-root,
+    .list-fields-container .MuiTextField-root {
+        width: 80%;
+        margin-right: 0;
+    }
+
+    .MuiButton-root {
+        width: 80%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+}
+
+/* Medium Devices (landscape tablets and small desktops) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .list-container {
+        width: 50%;
+        margin-top: 2%;
+        height: 550px;
+    }
+
+    .autocomplete-field-container .MuiAutocomplete-root,
+    .list-fields-container .MuiTextField-root {
+        width: 60%;
+    }
+
+    .MuiButton-root {
+        width: 60%;
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
+    }
+}
+
+/* Large Devices (desktops) */
+@media only screen and (min-width: 1025px) {
+    .list-container {
+        width: 50%;
+        margin-top: 1.5%;
+        height: 590px;
+    }
+
+    .autocomplete-field-container .MuiAutocomplete-root,
+    .list-fields-container .MuiTextField-root {
+        width: 50%;
+    }
+
+    .MuiButton-root {
+        width: 15%;
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
+    }
+}
+
 
 

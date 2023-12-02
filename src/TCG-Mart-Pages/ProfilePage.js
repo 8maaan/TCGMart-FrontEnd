@@ -11,6 +11,7 @@ export default function PageNotFound(){
         localStorage.removeItem("username");
         window.history.replaceState(null, null, '/');
         navigateTo("/");
+        navigateTo(0);
     }
 
     return (
