@@ -1,8 +1,14 @@
-body{
+/* div {
+    border: 1px solid red;
+} */
+
+.card-page-main{
+    height: fit-content;
     background-image: url("https://i.imgur.com/d7KrWEt.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    border: 1px solid rgba(255, 0, 0, 0);
 }
 
 .card-page-body{
@@ -31,12 +37,13 @@ body{
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    text-align: left;
 }
 
 .card-attributes-left{
     width: 32%;
     min-width: fit-content;
-    text-align: left;
+    text-align: right;
     font-weight: 600;
 }
 
@@ -45,6 +52,7 @@ body{
     min-width: fit-content;
     white-space: nowrap;
     margin-left: 5px;
+    text-align: left;
 }
 
 .card-attributes{
@@ -58,7 +66,8 @@ body{
 }
 
 .card-transaction{
-    margin-top: 110px;
+    margin-top: 4rem;
+    text-align: left;
 }
 
 .cardpage-price{
@@ -98,7 +107,6 @@ body{
     height: fit-content;
     box-sizing: border-box;
     padding: 15px;
-    margin-left: auto;
     text-align: center;
 }
 
@@ -133,4 +141,59 @@ body{
     gap: 10px;
     align-items: center;
     font-size: 100%;
+}
+
+.msngr-link{
+    margin-top: 0.5rem;
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    border: 1px solid black;
+    border-radius: 1.2rem;
+    box-shadow: 0 5px 5px rgba(154, 160, 185, 0.311), 0 5px 3px rgba(166,173,201,.2);
+    display: flex;
+    align-items: center;
+}
+
+.msngr-logo-area{
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-right: 0.5rem;
+}
+
+.msngr-logo{
+    width: 100%;
+    height: 100%;
+}
+
+.msngr-copy-area{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-icon{
+    box-sizing: border-box;
+    padding-top: 1rem;
+}
+
+.copy-alert {
+    display: none;
+    background-color: rgba(97, 97, 97, 0.92);
+    color: white;
+    padding: 0.3rem;
+    border-radius: 5px;
+    font-size: small;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.seller-info-area{
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
 }
