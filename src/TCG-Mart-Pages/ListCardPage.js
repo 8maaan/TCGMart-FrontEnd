@@ -148,7 +148,7 @@ export default function ListCardPage() {
   const cardConditionOptions = ['Near Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged'];
 
   return (
-    <div>
+    <div className='list-page-main'>
       <SecondNavi />
       <div className="list-container">
         {/* Section 1 */}

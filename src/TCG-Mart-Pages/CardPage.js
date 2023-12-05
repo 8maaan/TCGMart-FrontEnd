@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getCardByCardID, getSellerDetails } from '../services/apiServices';
 import '../TCG-Mart-CSS-Pages/CardPage.css';
 import SecondNavi from '../Navigations/secondNavi';
@@ -125,13 +125,19 @@ const CardPage = () => {
                   {card.uid != loggedInUser ? (
                     <>
                       <div className='buttons-area'>
-                        <Button variant="contained" 
-                        color="lightbluebutton"
-                        style={{boxSizing: 'border-box',
-                          padding: '10px 0px 10px 0px',
-                          width: '160px',
-                          height: '50px'}}
-                        sx={{borderRadius: '15px'}}>Buy Now</Button>
+                        {/* Link to payment */}
+                        <Link to={`/cards/${card.cardid}/payment`}>
+                          <Button 
+                            variant="contained" 
+                            color="lightbluebutton"
+                            style={{boxSizing: 'border-box',
+                              padding: '10px 0px 10px 0px',
+                              width: '160px',
+                              height: '50px'}}
+                            sx={{borderRadius: '15px'}}>
+                            Buy Now
+                          </Button>
+                        </Link>
                         <Button variant="contained" 
                         color="palebluebutton"
                         style={{boxSizing: 'border-box',
@@ -153,7 +159,7 @@ const CardPage = () => {
                             <div className='copy-icon' onClick={copyText}>
                               <ContentCopyIcon sx={{ fontSize: '25px' }}/>
                             </div>
-                            <div id='copyAlert' class='copy-alert'>Copied</div>
+                            <div id='copyAlert' className='copy-alert'>Copied</div>
                           </div>
                         </>
                       ) : (

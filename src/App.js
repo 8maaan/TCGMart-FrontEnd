@@ -8,6 +8,7 @@ import NotFoundPage from './TCG-Mart-Pages/NotFoundPage';
 import CardPage from './TCG-Mart-Pages/CardPage';
 import ProfilePage from './TCG-Mart-Pages/ProfilePage';
 import ListingCardPage from './TCG-Mart-Pages/ListCardPage';
+import PaymentPage from './TCG-Mart-Pages/PaymentPage'
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -26,6 +27,8 @@ function App() {
             <>
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/sellcard" element={<ListingCardPage />} />
+              {/* Added payment page */}
+              <Route path="/cards/:cardId/payment" element={<PaymentPage />} />
             </>
           )}
 

@@ -1,3 +1,12 @@
+.list-page-main{
+    height: fit-content;
+    background-image: url("https://i.imgur.com/d7KrWEt.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* border: 1px solid rgba(255, 0, 0, 0); */
+}
+
 .list-container{
     background-color: rgba(245, 245, 245, 0.5);
     display: inline-block;
@@ -43,6 +52,7 @@
     align-items: center;
     text-align: center;
     margin-top: 1%;
+    /* border: solid black; */
 }
 
 .MuiButton-root{
