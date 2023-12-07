@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getCardByCardID, getSellerDetails } from '../services/apiServices';
 import '../TCG-Mart-CSS-Pages/CardPage.css';
 import SecondNavi from '../Navigations/secondNavi';
 import { Button, ThemeProvider, createTheme } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {ConfirmationDialog} from '../Dialogues/Dialogues'
+import {updateCardStatus} from '../services/apiServices'
+import LoadingComponent from '../Loading/loadingComponent';
 
 const CardPage = () => {
   const { cardId } = useParams();
@@ -18,7 +21,7 @@ const CardPage = () => {
     const getCardInfo = async () => {
       try {
         const result = await getCardByCardID(cardId);
-        console.log(result);
+        // console.log(result);
         setCard(result);
       } catch (error) {
         console.log(error);
@@ -33,7 +36,7 @@ const CardPage = () => {
       try {
         const result = await getSellerDetails(card.uid);
         setSeller(result);
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.log(error);
       }
@@ -94,6 +97,40 @@ const CardPage = () => {
       }, 500);
     }, 2000);
   }; 
+
+  const [openDialogue, setOpenDialogue] = useState(false);
+  const [confirmationStatus, setConfirmationStatus] = useState(false);
+  const toNavigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const handleOpenDialog = () => {
+    setOpenDialogue(true);
+  };
+
+  const handleConfirmationDialogClose = (confirmed) => {
+    setOpenDialogue(false);
+    setConfirmationStatus(confirmed);
+    console.log(confirmationStatus);
+
+    if (confirmed) {
+      handleCancellation();
+    }
+  };
+  const handleCancellation = async() =>{
+    setIsLoading(true);
+    const cancel = await updateCardStatus(cardId, "Cancelled");
+    if(!cancel.success){
+      console.log(cancel.message);
+    }else{
+      console.log(cancel.message);
+      setTimeout(() => {
+        toNavigate("/");
+      }, 2000);
+    }
+  }
+
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
 
   return (
     <div>
@@ -187,21 +224,22 @@ const CardPage = () => {
                 ) : (
                   <>
                     <Button 
-                    variant="contained" 
-                    color="lightbluebutton"
-                    style={{boxSizing: 'border-box',
-                      padding: '10px 0px 10px 0px',
-                      width: '160px',
-                      height: '50px'}}
-                    sx={{borderRadius: '15px'}}>Edit Listing</Button>
+                      variant="contained" 
+                      color="lightbluebutton"
+                      style={{boxSizing: 'border-box',
+                        padding: '10px 0px 10px 0px',
+                        width: '160px',
+                        height: '50px'}}
+                      sx={{borderRadius: '15px'}}>Edit Listing</Button>
                     <Button 
-                    variant="contained" 
-                    color="redbutton"
-                    style={{boxSizing: 'border-box',
-                      padding: '10px 0px 10px 0px',
-                      width: '160px',
-                      height: '50px'}}
-                    sx={{borderRadius: '15px'}}>Cancel Listing</Button>
+                      variant="contained" 
+                      color="redbutton"
+                      style={{boxSizing: 'border-box',
+                        padding: '10px 0px 10px 0px',
+                        width: '160px',
+                        height: '50px'}}
+                      sx={{borderRadius: '15px'}}
+                      onClick={handleOpenDialog}>Cancel Listing</Button>
                   </>
                 )}
               </div>
@@ -213,16 +251,15 @@ const CardPage = () => {
                 <p>{card.cardDescription}</p>
               </div>
             </div>
-            {/* <h1>Card Details</h1>
-            <p>Card ID: {cardId}</p>
-            <p>seller ID:{card.uid}</p>
-            <p>Logged in ID:{loggedInUser}</p>
-            <br></br>
-
-            <h1>User Info</h1>
-            <p>{seller.username}</p>
-            <p>{seller.mssngr_link}</p> */}
-          </div>
+            {openDialogue && 
+              <ConfirmationDialog
+                status={true} 
+                onClose={handleConfirmationDialogClose} 
+                title={"Are you sure you want to cancel the listing of this item?"}
+                context={"Please note that once you confirm the cancellation, it cannot be undone."}/>
+            }
+            {isLoading && <LoadingComponent onClose={stopLoading}/>}
+            </div>
         </div>
       </ThemeProvider>
     </div>

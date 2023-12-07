@@ -6,7 +6,8 @@ import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
 import LooksTwoOutlinedIcon from '@mui/icons-material/LooksTwoOutlined';
 import ImageUploader from '../Cloudinary/ImageUploader';
 import { insertCard } from '../services/apiServices';
-import {ConfirmationDialog} from '../Dialogues/Dialogues'
+import {ConfirmationDialog} from '../Dialogues/Dialogues';
+import LoadingComponent from '../Loading/loadingComponent';
 
 // Reusable TextField component with helper text
 const CardTextField = ({ label, name, value, onChange, multiline, rows, startAdornment, helperText }) => {
@@ -58,6 +59,13 @@ export default function ListCardPage() {
     }));
   };
 
+  const resetCardImg = () => {
+    setCard((prevCard) => ({
+      ...prevCard,
+      cardImg: ""
+    }));
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCard({
@@ -86,6 +94,7 @@ export default function ListCardPage() {
       cardDescription: "",
       uid: localStorage.getItem("uid")
     });
+    resetCardImg();
   };
 
   const [blankFields, setBlankFields] = useState(false);
@@ -113,6 +122,7 @@ export default function ListCardPage() {
 
   const [openDialogue, setOpenDialogue] = useState(false);
   const [confirmationStatus, setConfirmationStatus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleOpenDialog = () => {
     setOpenDialogue(true);
   };
@@ -132,6 +142,7 @@ export default function ListCardPage() {
       return;
     }
     try{
+      setIsLoading(true);
       const result = await insertCard(card);
       console.log(result);
       if (result.success) {
@@ -143,6 +154,10 @@ export default function ListCardPage() {
     }catch(error){
       alert('Check Eclipse.');
     }   
+  };
+
+  const stopLoading = () => {
+    setIsLoading(false);
   };
 
   const cardConditionOptions = ['Near Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged'];
@@ -206,7 +221,7 @@ export default function ListCardPage() {
           <p className=''>Additional Details</p>
         </div>
         {/* Upload Image */}
-        <ImageUploader updateCardImg={updateCardImg} />
+        <ImageUploader cardImg={card.cardImg} updateCardImg={updateCardImg} />
         {/* Description */}
         <CardTextField
           label="Description"
@@ -245,6 +260,7 @@ export default function ListCardPage() {
         </Snackbar>
 
         {openDialogue && <ConfirmationDialog status={true} onClose={handleConfirmationDialogClose} title={"Are you sure you want to list this item?"} />}
+        {isLoading && <LoadingComponent onClose={stopLoading}/>}
       </div>
     </div>
   );

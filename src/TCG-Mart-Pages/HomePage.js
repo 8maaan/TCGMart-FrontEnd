@@ -9,7 +9,7 @@ export default function HomePage(){
     const [cards,setCards] = useState([{}]);
 
     useEffect(()=>{
-        axios.get("http://localhost:8080/tcg/card/getAllCards")
+        axios.get("http://localhost:8080/tcg/card/getAllActiveCards")
             .then(response => {
                 return response.data;
             })

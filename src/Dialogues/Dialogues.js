@@ -34,6 +34,7 @@ export const ConfirmationDialog = ({ status, onClose, title, context}) => {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {/* Add any additional content here if needed */}
+            {context}
           </DialogContentText>
         </DialogContent>
         <DialogActions style={{ justifyContent: 'center' }}>

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 
 
-const ImageUploader = ({ updateCardImg }) => {
+const ImageUploader = ({ cardImg, updateCardImg }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [uploadedImgName, setUploadedImgName] = useState('');
@@ -37,7 +37,7 @@ const ImageUploader = ({ updateCardImg }) => {
       <TextField 
         disabled 
         size="small" 
-        label={uploadedImgName ? uploadedImgName : "Upload Image"}
+        label={cardImg ? uploadedImgName : "Upload Image"}
         InputProps={{ endAdornment: ( 
         <InputAdornment 
           position="end" 

@@ -2,8 +2,19 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import "../TCG-Mart-CSS-Pages/Stripe.css"
+import { insertTransaction, updateCardStatus } from '../services/apiServices';
+import { useNavigate } from "react-router-dom";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({cardBuyer, cardSeller, card}) {
+  const [transaction] = useState({
+    cardSeller: cardSeller,
+    cardBuyer: cardBuyer,
+    card: card,
+    transactionAmount: card.cardPrice,
+    timeStamp: new Date().toLocaleString()
+  });
+  const toNavigate = useNavigate();
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -20,19 +31,31 @@ export default function CheckoutForm() {
     }
 
     setIsProcessing(true);
-
-    const { error } = await stripe.confirmPayment({
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: `${window.location.origin}/`,
       },
+      redirect: 'if_required'
     });
 
-    if (error.type === "card_error" || error.type === "validation_error") {
+    if(paymentIntent && paymentIntent.status === "succeeded"){
+      const insertResult = await insertTransaction(transaction);
+      const updateResult = await updateCardStatus(transaction.card.cardid, "Sold");
+      if(!insertResult.success){
+        console.log(insertResult.message)
+      }else if(!updateResult.success){
+        console.log(updateResult.message);
+      }else{
+        toNavigate("/paymentsuccesspage");
+      }
+    }
+
+    if (error && (error.type === "card_error" || error.type === "validation_error")) {
       setMessage(error.message);
     } else {
-      setMessage("An unexpected error occured.");
+      setMessage("An unexpected error occurred.");
     }
 
     setIsProcessing(false);

@@ -48,10 +48,11 @@ export const getSellerDetails = async(uid) => {
     const response = await axios.get(`http://localhost:8080/tcg/users/getUserById?uid=${uid}`);
     return response.data; 
   }catch (error) {
-    throw new Error('Error, could not find  card.', error);
+    throw new Error('Error, could not find user.', error);
   }
 }
 
+// Insert/Create card
 export const insertCard = async (card) => {
   try {
     await axios.post("http://localhost:8080/tcg/card/insertCard", card);
@@ -59,5 +60,26 @@ export const insertCard = async (card) => {
   } catch (error) {
     console.error("Error:", error);
     return { success: false, message: `Error, please check console. ${error}` };
+  }
+}
+
+// Insert transaction history
+export const insertTransaction = async (transaction) => {
+  try {
+    await axios.post("http://localhost:8080/tcg/transactions/insertTransaction", transaction);
+    return { success: true, message: "Transaction successfully recorded." };
+  } catch (error) {
+    console.error("Error:", error);
+    return { success: false, message: `Error, please check console. ${error}` };
+  }
+}
+
+// Change card status
+export const updateCardStatus = async (cardid, reason) =>{
+  try{
+    await axios.put(`http://localhost:8080/tcg/card/removecard?cardid=${cardid}&reason=${reason}`)
+    return { success: true, message: `Card status has successfully been changed to ${reason}`}
+  }catch (error) {
+    return {sucess: false, message: `${error}`}
   }
 }

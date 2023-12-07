@@ -1,0 +1,22 @@
+/* WORK IN PROGRESS. TO BE COMPLETED. */
+
+.listings-page-main{
+    /* height: fit-content; */
+    background-image: url("https://i.imgur.com/d7KrWEt.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.listings-container{
+    background-color: rgba(245, 245, 245, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    box-shadow: 1px 1px 1px 1px #888888;
+    /* border: solid black; */
+    margin-top: 1%;
+    height: 500px;
+}

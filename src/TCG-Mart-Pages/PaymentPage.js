@@ -22,7 +22,7 @@ function PaymentPage() {
     const getCardInfo = async () => {
       try {
         const result = await getCardByCardID(cardId);
-        console.log(result);
+        // console.log(result);
         setCard(result);
       } catch (error) {
         console.log(error);
@@ -36,7 +36,7 @@ function PaymentPage() {
       try {
         const result = await getSellerDetails(card.uid);
         setSeller(result);
-        console.log(result);
+        // console.log(result);
       } catch (error) {
         console.log(error);
       }
@@ -101,7 +101,7 @@ function PaymentPage() {
         <div className="checkout">
           {clientSecret && stripePromise && (
             <Elements stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm />
+              <CheckoutForm cardSeller={seller.uid} cardBuyer={localStorage.getItem("uid")} card={card}/>
             </Elements>
           )}
         </div>
