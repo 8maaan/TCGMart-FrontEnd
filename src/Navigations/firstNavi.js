@@ -11,7 +11,7 @@ export default function FirstNavi() {
                 <div className='navi-left'>
                     <Link to='/'><h1>TCGMart</h1></Link>
                     <Link to='/'><h3>Home</h3></Link>
-                    <Link to='/marketpage'><h3>Market</h3></Link>
+                    <Link to='/market'><h3>Market</h3></Link>
                     <h3>Guide</h3>
                 </div>
                 <div className='navi-right'>
