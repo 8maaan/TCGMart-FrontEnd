@@ -49,7 +49,7 @@ export default function HomePage(){
                         : (cards && cards.cardTitle) || '';
 
                         return(
-                            <Link to={`/cards/${cards.cardid}`} key={cards.id}>
+                            <Link to={`/cards/${cards.cardid}`} key={id}>
                                 <div className='card' key={id}>
                                     <div className='card-image-area'>
                                         <div className='card-image-size'>
