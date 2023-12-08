@@ -1,22 +1,99 @@
-/* WORK IN PROGRESS. TO BE COMPLETED. */
+/* WORK IN PROGRESS. TO BE */
 
 .listings-page-main{
-    /* height: fit-content; */
+    height: fit-content;
+    min-height: 100vh;
     background-image: url("https://i.imgur.com/d7KrWEt.jpg");
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+}
+.listing-section{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 1.5%;
+    width: 85%;
+    
+    /* border: solid black; */
 }
 
 .listings-container{
-    background-color: rgba(245, 245, 245, 0.5);
+    background-color: rgba(255,255,255, 0.35);
+    margin: 0 auto;
+    padding: 1.5%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: left;  
+    width: 85%;
+    margin-top: 1.5%;
+    min-height: 40vh;
+    /* border: solid black 0.1px; */
+    box-shadow: -10px 0 15px -10px rgba(0, 0, 0, 0.25), /* Left */
+                10px 0 15px -10px rgba(0, 0, 0, 0.25),  /* Right */
+                0 -10px 15px -10px rgba(0, 0, 0, 0.25),  /* Top */
+                0 10px 15px -10px rgba(0, 0, 0, 0.25);   /* Bottom */
+    
+}
+
+.listings-card-container {
+    border: solid 1px black;
+    width: 200px;
+    height: 210px;
+    margin: 1%;
+    background-color: cornsilk;
+    transition: transform 0.3s ease; /* Add transition property */
+}
+
+.listings-card-container:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+
+.listings-card-container a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-upper{
+    height: 130px;
+    background-color: #D9D9D9;
+}
+
+.card-image-size{
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    width: 80%;
-    box-shadow: 1px 1px 1px 1px #888888;
-    /* border: solid black; */
-    margin-top: 1%;
-    height: 500px;
+}
+
+.card-image{
+    height: 100%;
+}
+
+.card-lower{
+    /* border: solid 1px black; */
+    background-color: white;
+    height: 78px;
+}
+.card-lower-title{
+    /* border: solid 1px black; */
+    padding: 5%;
+    font-size: 13px;
+    height: 40px;
+}
+
+.card-lower-price{
+    /* border: solid 1px black; */
+    color: #ffcb05;
+    font-weight: 650;
+    font-size: 18px;
+}
+
+.card-lower-title p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

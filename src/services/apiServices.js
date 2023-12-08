@@ -77,9 +77,28 @@ export const insertTransaction = async (transaction) => {
 // Change card status
 export const updateCardStatus = async (cardid, reason) =>{
   try{
-    await axios.put(`http://localhost:8080/tcg/card/removecard?cardid=${cardid}&reason=${reason}`)
+    await axios.put(`http://localhost:8080/tcg/card/removecard?cardid=${cardid}&reason=${reason}`);
     return { success: true, message: `Card status has successfully been changed to ${reason}`}
   }catch (error) {
     return {sucess: false, message: `${error}`}
+  }
+}
+
+// Get Cards by status *Active*
+export const getAllActiveCards = async () => {
+  try{
+    const  response = await axios.get(`http://localhost:8080/tcg/card/getAllActiveCards`);
+    return {card: response.data, success: true, message: `successfully fetched cards with active status. `}
+  }catch (error) {
+    return {success: false, message: `${error}`}
+  }
+}
+
+export const getCardsBySellerUid = async (uid) => {
+  try{
+    const  response = await axios.get(`http://localhost:8080/tcg/card/getCardBySellerUid?uid=${uid}`);
+    return {card: response.data, success: true, message: `successfully fetched cards based on seller uid. `}
+  }catch (error) {
+    return {success: false, message: `${error}`}
   }
 }

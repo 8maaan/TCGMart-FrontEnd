@@ -123,7 +123,7 @@ const CardPage = () => {
     }else{
       console.log(cancel.message);
       setTimeout(() => {
-        toNavigate("/");
+        toNavigate("/listings");
       }, 2000);
     }
   }
