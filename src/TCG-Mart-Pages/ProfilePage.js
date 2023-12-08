@@ -10,7 +10,7 @@ export default function PageNotFound(){
         localStorage.removeItem("uid");
         localStorage.removeItem("username");
         window.history.replaceState(null, null, '/');
-        navigateTo("/");
+        navigateTo("/home");
         navigateTo(0);
     }
 
