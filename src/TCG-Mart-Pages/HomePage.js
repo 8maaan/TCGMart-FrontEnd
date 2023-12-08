@@ -39,13 +39,13 @@ export default function HomePage(){
                     </div>
                     <p>Pokemon</p>
                     <p className='newly-listed-bar-right'>
-                        <Link to="/marketpage">View More &#62;</Link>
+                        <Link to="/market">View More &#62;</Link>
                     </p>
                 </div>
                 <div className='card-lists'>
                     {cards.map((cards, id)=>{
-                        const shortenedTitle = cards && cards.cardTitle && cards.cardTitle.length > 33
-                        ? `${cards.cardTitle.substring(0, 30)}...`
+                        const shortenedTitle = cards && cards.cardTitle && cards.cardTitle.length > 20
+                        ? `${cards.cardTitle.substring(0, 20)}...`  // Cut and add triple dots
                         : (cards && cards.cardTitle) || '';
 
                         return(
