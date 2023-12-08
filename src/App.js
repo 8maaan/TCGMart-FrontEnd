@@ -19,13 +19,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Common routes for both logged-in and not-logged-in users */}
-          <Route index element={<HomePage />} />
           <Route path="/market" element={<MarketPage />} />
           <Route path="/cards/:cardId" element={<CardPage />} />
+          <Route path="/home" element={<HomePage />} />
 
           {/* Routes for logged-in users */}
           {isLoggedIn && (
             <>
+              <Route index element={<HomePage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/sellcard" element={<SellCardPage />} />
               {/* Added payment page */}
@@ -37,6 +38,7 @@ function App() {
           {/* Routes for not-logged-in users */}
           {!isLoggedIn && (
             <>
+              <Route index element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
             </>
