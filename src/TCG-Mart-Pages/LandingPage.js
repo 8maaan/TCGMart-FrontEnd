@@ -28,7 +28,7 @@ export default function LandingPage(){
                 {/* big product picture that is shown on the right*/}
                 <div className="main-picture">
                     
-                    <img src='https://i.imgur.com/L0hQ6YP.png' alt="product image"/>
+                    <img src='https://i.imgur.com/L0hQ6YP.png' alt="product img"/>
 
                 </div>
 
@@ -50,7 +50,7 @@ export default function LandingPage(){
                     {/* about us profile picture */}
                     <div className="dev-pic">
 
-                        <img src="https://i.imgur.com/9rg6WMh.png" alt="usjr graduation image of john randolf"/>
+                        <img src="https://i.imgur.com/9rg6WMh.png" alt="usjr graduation img of john randolf"/>
 
                     </div>
 
@@ -71,7 +71,7 @@ export default function LandingPage(){
                     {/* about us profile picture */}
                     <div className="dev-pic">
 
-                        <img src="https://i.imgur.com/nj6IYve.png" alt="outdoor image of john carl"/>
+                        <img src="https://i.imgur.com/nj6IYve.png" alt="outdoor img of john carl"/>
 
                     </div>
 

@@ -10,6 +10,7 @@ import ProfilePage from './TCG-Mart-Pages/ProfilePage';
 import SellCardPage from './TCG-Mart-Pages/SellCardPage';
 import PaymentPage from './TCG-Mart-Pages/PaymentPage'
 import ListingsPage from './TCG-Mart-Pages/ListingsPage';
+import LandingPage from './TCG-Mart-Pages/LandingPage'
 
 function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";

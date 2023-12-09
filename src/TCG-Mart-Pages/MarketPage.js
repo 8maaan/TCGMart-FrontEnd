@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function MarketPage(){
     const [cards,setCards] = useState([{}]);
     const [search, setSearch] = useState('');
-    console.log(search);
+    // console.log(search);
 
     // gets the cards in database
     useEffect(()=>{
