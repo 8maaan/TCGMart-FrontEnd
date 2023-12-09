@@ -11,20 +11,20 @@
 }
 
 .market-page-navi{
-    height: 30rem;
-    background: url('https://i.imgur.com/rrB75vV.png') no-repeat center center;
+    height: 590px;
+    background: url('https://i.imgur.com/NV2Qj2X.png') no-repeat center center;
 }
 
 .market-page-body{
     font-family: Arial, Helvetica, sans-serif;
     padding-top: 30px;
     padding-bottom: 50px;
-    margin-top: -15%;
+    margin-top: -250px;
 }
 
 .search-bar{
     height: fit-content;
-    width: 90%;
+    width: 1265px;
     margin-left: auto;
     margin-right: auto;
     background-color: #0000009c;
@@ -62,13 +62,13 @@
 }
 
 .market-card-lists{
-    width: 90%;
+    width: 1265px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 4rem;
-    padding: 50px 100px 50px 100px;
+    justify-content: left;
+    padding: 20px 20px 20px 20px;
     background-color: #F7F7F7;
     text-align: left;
     box-shadow: 0 5px 3px rgba(154,160,185,.05), 0 5px 3px rgba(166,173,201,.2);
@@ -85,6 +85,7 @@
     background-color: white;
     box-shadow: 0 5px 3px rgba(154,160,185,.05), 0 5px 3px rgba(166,173,201,.2);
     transition: transform 0.3s ease;
+    margin: 10px;
 }
 
 .card:hover{
