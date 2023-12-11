@@ -7,16 +7,25 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+
+.listings-not-available,
+.history-section,
 .listing-section{
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center; 
     margin-top: 1.5%;
     width: 85%;
     
     /* border: solid black; */
+}
+.listings-not-available{
+    justify-content: center;
+    color: gray;
 }
 
 .listings-container{
@@ -26,7 +35,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    align-items: left;  
+    align-items: center;  
     width: 85%;
     margin-top: 1.5%;
     min-height: 40vh;
@@ -39,6 +48,7 @@
 }
 
 .listings-card-container {
+    text-align: left;
     border: solid 1px black;
     width: 200px;
     height: 210px;
@@ -57,6 +67,7 @@
     color: inherit;
 }
 
+.listing-history-card-upper,
 .card-upper{
     height: 130px;
     background-color: #D9D9D9;
@@ -90,10 +101,63 @@
     color: #ffcb05;
     font-weight: 650;
     font-size: 18px;
+    padding-left: 10px;
 }
 
 .card-lower-title p{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.history-section{
+    justify-content: left;
+}
+
+.listing-history-main-container{
+    width: 85%;
+    border: solid black 1px;
+    margin: 0 auto;
+}
+.listing-history-container{
+    padding: 1%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    /* border: solid black 1px; */
+    
+}
+
+.listing-history-content{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+    padding: 1%;
+    width: 100%;
+
+    border: solid black 1px;
+    border-radius: 10px;
+    background: rgb(255,255,255);
+    /* background: linear-gradient(86deg, rgba(255,255,255,1) 0%, rgba(166,166,166,1) 100%); */
+}
+
+.listing-history-card-upper{
+    height: 100px;
+}
+
+.listing-history-texts{
+    display: inline-block;
+    /* border: solid black 1px; */
+    margin-left: 15px;
+    width: 90%;
+    height: 100px;
+}
+
+.listing-history-price{
+    text-align: right;
+    padding: 1%;
+    width: 10%;
+    /* border: solid black 1px; */
 }

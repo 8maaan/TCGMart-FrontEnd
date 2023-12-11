@@ -2,7 +2,7 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import "../TCG-Mart-CSS-Pages/Stripe.css"
-import { insertTransaction, updateCardStatus } from '../services/apiServices';
+import { insertTransaction, updateCardStatus, updateUserDashboard } from '../services/apiServices';
 import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm({cardBuyer, cardSeller, card}) {
@@ -43,10 +43,16 @@ export default function CheckoutForm({cardBuyer, cardSeller, card}) {
     if(paymentIntent && paymentIntent.status === "succeeded"){
       const insertResult = await insertTransaction(transaction);
       const updateResult = await updateCardStatus(transaction.card.cardid, "Sold");
+      const updateBuyerDashboard = await updateUserDashboard(cardBuyer, "Purchase", card.cardPrice);
+      const updateSellerDashboard = await updateUserDashboard(cardSeller, "Earning", card.cardPrice);
       if(!insertResult.success){
         console.log(insertResult.message)
       }else if(!updateResult.success){
         console.log(updateResult.message);
+      }else if(!updateBuyerDashboard) {
+        console.log(updateBuyerDashboard.message);
+      }else if(!updateSellerDashboard.message) {
+        console.log(updateSellerDashboard.message);   
       }else{
         toNavigate("/paymentsuccesspage");
       }

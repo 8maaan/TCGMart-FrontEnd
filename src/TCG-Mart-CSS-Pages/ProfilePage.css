@@ -1,0 +1,122 @@
+.profile-page-main{
+    min-height: 100vh;
+    background-image: url("https://i.imgur.com/d7KrWEt.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.profile-page-container{
+    margin: 0 auto;
+    margin-top: 3.5%; 
+    /* border: solid black 1px; */
+}
+.profile-dashboard-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-dashboard{
+    width: 32%;
+    height: 140px;
+    margin-bottom: 1%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: linear-gradient(180deg, #2282C2 0%, rgba(34, 130, 194, 0.00) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.profile-dashboard-content{
+    width: 80%;
+    height: 90px;
+}
+
+/* .profile-dashboard-content p{
+    margin-top: 3%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #524E4E;
+} */
+
+.profile-earnings-num{
+    font-size: 35px;
+    font-weight: 600;
+    margin-top: 1%;
+    color: white;
+}   
+
+.profile-earnings-text{
+    font-size: 18px;
+    font-weight: 500;
+    color: #524E4E;
+    margin-top: 5%;
+}
+
+
+.profile-info-container{
+    margin: 0 auto;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(251, 251, 251, 0.3);
+    
+}
+
+.profile-info{
+    border-radius: 15px;
+    border: 1px solid #000;
+    height: 360px;
+    width: 70%;
+    padding: 2.5%;
+}
+.profile-info-texts{
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+    /* border: solid black 1px; */
+}
+
+.profile-infoAttribute{
+    width: 20%;
+    margin-right: 15px;
+    /* border: solid black 1px; */
+}
+.profile-info-textFields{
+    width: 45%;
+    margin-right: 50px;
+    /* border: solid black; */
+}
+
+.profile-info-textFields .MuiTextField-root{
+    width: 100%;
+}
+
+
+.profile-picture-container{
+    border-radius: 15px;
+    border: 1px solid #000;
+    height: 360px;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture-size{
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.profile-image{
+    height: 100%;
+}

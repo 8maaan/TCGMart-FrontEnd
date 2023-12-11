@@ -94,11 +94,41 @@ export const getAllActiveCards = async () => {
   }
 }
 
+//Get cards info by seller uid
 export const getCardsBySellerUid = async (uid) => {
   try{
     const  response = await axios.get(`http://localhost:8080/tcg/card/getCardBySellerUid?uid=${uid}`);
     return {card: response.data, success: true, message: `successfully fetched cards based on seller uid. `}
   }catch (error) {
     return {success: false, message: `${error}`}
+  }
+}
+
+//Get user profile info
+export const getUserProfileInfo = async(uid) => {
+  try{
+    const response = await axios.get(`http://localhost:8080/tcg/users/getUserProfileInfo?uid=${uid}`);
+    return {user: response.data, success: true, message: 'Successfully fetched User info.'}
+  }catch(error){
+    return {success: false, message: `${error}`}
+  }
+}
+
+//Update user profile info
+export const updateUser = async(uid, user) => {
+  try {
+    await axios.put(`http://localhost:8080/tcg/users/updateUser?uid=${uid}`, user);
+    return { success: true, message: 'Successfully updated User info.' }
+  } catch (error) {
+    return { success: false, message: `${error}` }
+  }
+}
+
+export const updateUserDashboard = async(uid, type, amount) => {
+  try {
+    await axios.put(`http://localhost:8080/tcg/users/updateUserDashboard?uid=${uid}&type=${type}&amount=${amount}`);
+    return { success: true, message: 'Successfully updated User dashboard info.' }
+  } catch (error) {
+    return { success: false, message: `${error}` }
   }
 }

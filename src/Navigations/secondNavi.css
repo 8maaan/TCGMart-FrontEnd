@@ -23,7 +23,7 @@
     position: absolute;
 }
 
-.first-navi-main a {
+a {
     text-decoration: none;
     color: inherit;
 }
@@ -50,6 +50,8 @@
 .navi-username-area{
     display: flex;
     gap: 10px;
+    height: 25px;
+    cursor: pointer;
 }
 
 .user-profile-picture{

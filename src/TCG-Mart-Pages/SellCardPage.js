@@ -83,6 +83,10 @@ export default function ListCardPage() {
     return false; // All fields are filled
   };
 
+  const validatePrice = (input) =>{
+    return /^\d+$/.test(input);
+  }
+
   const resetCardValues = () => {
     setCard({
       cardTitle: "",
@@ -95,6 +99,14 @@ export default function ListCardPage() {
       uid: localStorage.getItem("uid")
     });
     resetCardImg();
+  };
+
+  const [invalidField, setInvalidField] = useState(false);
+  const handleCloseinvalidField = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setInvalidField(false);
   };
 
   const [blankFields, setBlankFields] = useState(false);
@@ -141,13 +153,20 @@ export default function ListCardPage() {
       setBlankFields(true);
       return;
     }
+
+    if(!validatePrice(card.cardPrice)){
+      setInvalidField(true);
+      return;
+    }
     try{
       setIsLoading(true);
       const result = await insertCard(card);
       console.log(result);
       if (result.success) {
         resetCardValues();
-        setSnackbarSuccess(true);
+        setTimeout(() => {
+          setSnackbarSuccess(true);
+      }, 2000);
       } else {
         setSnackbarInvalid(true);
       }
@@ -242,6 +261,13 @@ export default function ListCardPage() {
         <Snackbar open={blankFields} autoHideDuration={3000} onClose={handleCloseBlankFields} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
           <Alert onClose={handleCloseBlankFields} severity="warning" sx={{ width: '100%' }}>
             Please fill in all fields!
+          </Alert>
+        </Snackbar>
+
+        {/* Snackbar for when submit, the inputs are invalid */}
+        <Snackbar open={invalidField} autoHideDuration={3000} onClose={handleCloseinvalidField} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+          <Alert onClose={handleCloseinvalidField} severity="warning" sx={{ width: '100%' }}>
+            Please input fields in valid format!
           </Alert>
         </Snackbar>
 
