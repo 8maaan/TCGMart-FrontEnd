@@ -118,9 +118,11 @@ export default function FirstNavi() {
                                     </MenuItem>
 
                                 </Link>
-                                <MenuItem onClick={handleClose}>
-                                    <PaidIcon style={{fill: "#0075BE"}}/>  &nbsp; Transactions
-                                </MenuItem>
+                                <Link to ='/transactions'>
+                                    <MenuItem onClick={handleClose}>
+                                        <PaidIcon style={{fill: "#0075BE"}}/>  &nbsp; Transactions
+                                    </MenuItem>
+                                </Link>
                                 <Divider/>
                                 <MenuItem onClick={()=>{handleClose(); handleOpenDialog();}}>
                                     <LogoutIcon style={{fill: "#0075BE"}}/>  &nbsp; Logout
