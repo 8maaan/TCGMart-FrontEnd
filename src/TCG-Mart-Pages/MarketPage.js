@@ -100,6 +100,16 @@ export default function MarketPage(){
 
                     )})}
 
+                    {/* this message will show up if you searched something that does not exists */}
+                    <div className='not-able-to-find'>
+
+                        {cards.filter((card) => {
+                            return search.toLowerCase() === ''
+                                ? card
+                                : card.cardTitle.toLowerCase().includes(search);
+                        }).length === 0 ? "We were not able to find your card :(" : null}
+
+                    </div>
                 </div>
 
             </div>
