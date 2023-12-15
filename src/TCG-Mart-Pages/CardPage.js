@@ -223,14 +223,16 @@ const CardPage = () => {
                   </>
                 ) : (
                   <>
-                    <Button 
-                      variant="contained" 
-                      color="lightbluebutton"
-                      style={{boxSizing: 'border-box',
-                        padding: '10px 0px 10px 0px',
-                        width: '160px',
-                        height: '50px'}}
-                      sx={{borderRadius: '15px'}}>Edit Listing</Button>
+                    <Link to={`/editcard/${card.cardid}`}>
+                      <Button 
+                        variant="contained" 
+                        color="lightbluebutton"
+                        style={{boxSizing: 'border-box',
+                          padding: '10px 0px 10px 0px',
+                          width: '160px',
+                          height: '50px'}}
+                        sx={{borderRadius: '15px'}}>Edit Listing</Button>
+                    </Link>
                     <Button 
                       variant="contained" 
                       color="redbutton"
