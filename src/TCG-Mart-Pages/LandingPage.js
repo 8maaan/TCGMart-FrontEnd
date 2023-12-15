@@ -82,7 +82,7 @@ export default function LandingPage(){
 
                         <h4>Programmer</h4>
 
-                        <p>"Strive for Excellence, Embrace Innovation"</p>
+                        <p>"Need. More. Divs."</p>
 
                     </div>
 
