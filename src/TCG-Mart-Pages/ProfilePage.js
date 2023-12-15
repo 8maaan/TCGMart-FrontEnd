@@ -203,7 +203,7 @@ export default function ProfilePage(){
                     <div className="profile-info-buttons">
                         <Button 
                             disabled={!isEdit}
-                            style={{backgroundColor:'gray', color:'white'}} 
+                            style={isEdit ? {backgroundColor:'gray', color:'white'} : null} 
                             variant="contained" 
                             sx={{marginTop: isEdit ? '1%' : '3%', marginRight:'1%'}}
                             onClick={()=>{handleOnCancel()}}>Cancel</Button>

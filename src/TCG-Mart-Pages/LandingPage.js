@@ -59,9 +59,9 @@ export default function LandingPage(){
 
                         <h3>John Randolf Ribo</h3>
 
-                        <h4>Lead Programmer</h4>
+                        <h4>Ex-F.A.N.G Senior Software Engineer</h4>
 
-                        <p>"motto in life"</p>
+                        <p>"How to center a div? 😳"</p>
 
                     </div>
 

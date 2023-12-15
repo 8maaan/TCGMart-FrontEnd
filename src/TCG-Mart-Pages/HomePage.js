@@ -57,7 +57,7 @@ export default function HomePage(){
                                         </div>
                                     </div>
                                     <p>{shortenedTitle}</p>
-                                    <p className='card-price'>₱{cards.cardPrice}</p>
+                                    <p className='card-price'>₱{cards.cardPrice}.00</p>
                                 </div>
                             </Link>
                     )})}

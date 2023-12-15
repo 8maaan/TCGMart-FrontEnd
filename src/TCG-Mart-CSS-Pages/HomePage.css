@@ -14,7 +14,7 @@ body{
     height: 200px;
     background-color: #0022aa; 
     box-shadow: inset 0 90px 10px -30px #0000006b;
-    background-image: url("https://i.imgur.com/QNUtDf8.jpg");
+    background-image: url("https://i.imgur.com/UCp9qAk.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -33,11 +33,11 @@ body{
 
 .newly-listed-bar{
     height: 70px;
-    width: 90%;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
-    background-color: #2C4764;
+    background-color: rgba(44,71,100,1);
     color: white;
     align-items: center;
     display: flex;
@@ -59,6 +59,10 @@ body{
     margin-left: auto;
 }
 
+.newly-listed-bar-right:hover{
+    transform: scale(1.05);
+}
+
 .newly-listed-bar-right a{
     text-decoration: none;
     color: inherit;
@@ -66,13 +70,13 @@ body{
 
 .card-lists{
     justify-content: center;
-    width: 90%;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 20px;
     padding: 50px 100px 50px 100px;
     background-image: linear-gradient(to top, rgba(255,0,0,0) -13%, #2F7AA5);
 }

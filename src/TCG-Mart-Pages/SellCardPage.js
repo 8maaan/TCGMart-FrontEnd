@@ -49,7 +49,8 @@ export default function ListCardPage() {
     cardTypeHPStage: "",
     cardPrice: "",
     cardDescription: "",
-    uid: localStorage.getItem("uid")
+    uid: localStorage.getItem("uid"),
+    timestamp: `${new Date().toLocaleString()}`
   });
 
   const updateCardImg = (imgUrl) => {
@@ -158,9 +159,17 @@ export default function ListCardPage() {
       setInvalidField(true);
       return;
     }
+
+    try {
+      console.log(card.timestamp);
+    } catch (error) {
+      alert('Check Eclipse.');
+    } 
+    // Use the updated timestamp from the state after the state has been updated
+    const updatedCard = { ...card, timestamp: card.timestamp };
     try{
       setIsLoading(true);
-      const result = await insertCard(card);
+      const result = await insertCard(updatedCard);
       console.log(result);
       if (result.success) {
         resetCardValues();
@@ -287,6 +296,7 @@ export default function ListCardPage() {
 
         {openDialogue && <ConfirmationDialog status={true} onClose={handleConfirmationDialogClose} title={"Are you sure you want to list this item?"} />}
         {isLoading && <LoadingComponent onClose={stopLoading}/>}
+        
       </div>
     </div>
   );

@@ -98,7 +98,7 @@ export default function ListingsPage() {
                 <div className="listing-history-texts">
                   <h4><CardHistoryInfo text={card.cardTitle}/></h4>
                   <CardHistoryInfo text={card.cardStatus} applyColorChange={true}/>
-                  <CardHistoryInfo text={new Date().toLocaleString()}/>
+                  <CardHistoryInfo text={card.timestamp}/>
                 </div>
                 <div className="listing-history-price">
                   <p>₱ {card.cardPrice}</p>

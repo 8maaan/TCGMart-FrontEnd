@@ -53,10 +53,15 @@ export default function FirstNavi() {
         <>
             <div className="first-navi-main">
                 <div className='navi-left'>
-                    <Link to='/home'><h1>TCGMart</h1></Link>
+                    <h1>TCGMart</h1>
                     <Link to='/home'><h3>Home</h3></Link>
                     <Link to='/market'><h3>Market</h3></Link>
-                    <h3>Guide</h3>
+                    <a 
+                        href='https://docs.google.com/document/d/1P5gO8Srsja9ICc3ctdL7REHqzHX0NU7v_OyJf09HzoQ/edit?usp=sharing'
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <h3>Guide</h3>
+                    </a>
                 </div>
                 <div className='navi-right'>
                     {isLoggedIn === 'true' ? (
