@@ -34,6 +34,12 @@
     cursor: pointer;
 }
 
+.main-text button:hover{
+    background-color: #ceaa51;
+    border: 3px solid #FFAC33;
+    /* color: white; */
+}
+
 .main-picture{
     min-width: 40%;
     max-width: 40%;

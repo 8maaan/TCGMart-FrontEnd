@@ -129,7 +129,7 @@ export default function LoginPage() {
             </Alert>
           </Snackbar>
 
-          <p className="text-signin">New to TCGMart? <Link to="/register">SIGN UP</Link></p>
+          <p className="text-signin">New to TCGMart? <Link to="/register" style={{color:' #3c5aa6'}}>SIGN UP</Link></p>
         </div>
       </div>
     </div>

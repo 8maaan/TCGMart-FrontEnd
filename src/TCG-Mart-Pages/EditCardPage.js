@@ -7,7 +7,6 @@ import { Alert, Autocomplete, Button, InputAdornment, Snackbar, TextField } from
 import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
 import LooksTwoOutlinedIcon from '@mui/icons-material/LooksTwoOutlined';
 import ImageUploader from '../Cloudinary/ImageUploader';
-import { insertCard } from '../services/apiServices';
 import {ConfirmationDialog} from '../Dialogues/Dialogues';
 import LoadingComponent from '../Loading/loadingComponent';
 
@@ -84,12 +83,12 @@ export default function EditCardPage(){
         }));
       };
     
-      const resetCardImg = () => {
-        setCard((prevCard) => ({
-          ...prevCard,
-          cardImg: ""
-        }));
-      };
+      // const resetCardImg = () => {
+      //   setCard((prevCard) => ({
+      //     ...prevCard,
+      //     cardImg: ""
+      //   }));
+      // };
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -112,19 +111,19 @@ export default function EditCardPage(){
         return /^\d+$/.test(input);
       }
     
-      const resetCardValues = () => {
-        setCard({
-          cardTitle: "",
-          cardImg: "",
-          cardCondition: "",
-          cardNumRarity: "",
-          cardTypeHPStage: "",
-          cardPrice: "",
-          cardDescription: "",
-          uid: localStorage.getItem("uid")
-        });
-        resetCardImg();
-      };
+      // const resetCardValues = () => {
+      //   setCard({
+      //     cardTitle: "",
+      //     cardImg: "",
+      //     cardCondition: "",
+      //     cardNumRarity: "",
+      //     cardTypeHPStage: "",
+      //     cardPrice: "",
+      //     cardDescription: "",
+      //     uid: localStorage.getItem("uid")
+      //   });
+      //   resetCardImg();
+      // };
     
       const [invalidField, setInvalidField] = useState(false);
       const handleCloseinvalidField = (event, reason) => {
@@ -188,10 +187,10 @@ export default function EditCardPage(){
           const result = await updateCard(card.cardid, card);
           console.log(result);
           if (result.success) {
-            resetCardValues();
+            // resetCardValues();
             setTimeout(() => {
               setSnackbarSuccess(true);
-          }, 2000);
+            }, 2000);
           } else {
             setSnackbarInvalid(true);
           }
@@ -205,7 +204,7 @@ export default function EditCardPage(){
       };
     
       const cardConditionOptions = ['Near Mint', 'Lightly Played', 'Moderately Played', 'Heavily Played', 'Damaged'];
-    
+      console.log(card.cardImg);
       return (
         <div className='list-page-main'>
           <SecondNavi />
@@ -232,7 +231,7 @@ export default function EditCardPage(){
                 options={cardConditionOptions}
                 value={card.cardCondition}
                 onChange={(event, newValue) => { handleInputChange({ target: { name: 'cardCondition', value: newValue } }); }}
-                renderInput={(params) => <TextField label="Card Condition" {...params} />}
+                renderInput={(params) => <TextField label={card.cardCondition} {...params} />}
               />
             </div>
             {/* Card Number/Rarity */}
@@ -265,7 +264,7 @@ export default function EditCardPage(){
               <p className=''>Additional Details</p>
             </div>
             {/* Upload Image */}
-            <ImageUploader cardImg={card.cardImg} updateCardImg={updateCardImg} />
+            <ImageUploader cardImg={card.cardImg} updateCardImg={updateCardImg} defaultValue={card.cardImg}/>
             {/* Description */}
             <CardTextField
               label=""

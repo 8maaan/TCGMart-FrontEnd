@@ -29,6 +29,11 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    /* border: solid black 1px; */
+    padding: 1%;
+    background-color: rgba(245, 245, 245, 0.5);
+    box-shadow: 1px 1px 1px 1px #888888;
+    border-radius: 15px;
 }
 
 .card-details{
@@ -45,6 +50,7 @@
     min-width: fit-content;
     text-align: right;
     font-weight: 600;
+    /* color: #656464 */
 }
 
 .card-attributes-right{
@@ -53,6 +59,7 @@
     white-space: nowrap;
     margin-left: 5px;
     text-align: left;
+    /* color: #656464; */
 }
 
 .card-attributes{
@@ -106,7 +113,7 @@
 }
 
 .seller-info{
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 10px;
     height: fit-content;
     box-sizing: border-box;

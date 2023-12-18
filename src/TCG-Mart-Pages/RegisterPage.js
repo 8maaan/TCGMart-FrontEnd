@@ -243,7 +243,7 @@ export default function RegisterPage() {
                     </Alert>
                 </Snackbar>
 
-                <p className="text-signin">Already have an account? <Link to="/login">SIGN IN</Link></p>
+                <p className="text-signin">Already have an account? <Link to="/login" style={{color:' #3c5aa6'}}>SIGN IN</Link></p>
             </div>
             </div>
         </div>

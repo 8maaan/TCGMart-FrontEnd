@@ -151,3 +151,13 @@ export const updateUserDashboard = async(uid, type, amount) => {
     return { success: false, message: `${error}` }
   }
 }
+
+export const getAllTransactions = async() =>{
+  try{
+    const response = await axios.get("http://localhost:8080/tcg/transactions/getAllTransactions");
+    return { transaction: response.data, success: true, message: 'Successfully fetched all transaction records'}
+    
+  }catch (error) {
+    return { success: false, message: `${error}` }
+  }
+}

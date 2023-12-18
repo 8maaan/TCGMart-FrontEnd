@@ -14,35 +14,38 @@
 
 .transactions-card{
     width: 80%;
-    height: 200px;
+    height: 150px;
     margin: 0 auto;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     padding: 0px 20px 0px 20px;
     gap: 10px;
-    background-color: white;
+    background-color: rgba(255,255,255, 0.50);
     box-shadow: 0 5px 3px rgba(154,160,185,.05), 0 5px 3px rgba(166,173,201,.2);
+    border: solid black 1px;
+    border-radius: 10px;
 }
 
 .transactions-card-image-area{
     width: 160px;
     min-width: 160px;
-    height: 160px;
+    height: 120px;
 }
 
 .transactions-card-image-area-2{
-    height: 160px;
+    height: 120px;
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
+    
 }
 
 .transactions-card-image-area-3{
     margin-left: auto;
     color: #1DC6E3;
-    font-size: 3rem;
+    font-size: 20px;
 }
 
 .lol{

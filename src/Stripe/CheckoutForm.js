@@ -54,7 +54,7 @@ export default function CheckoutForm({cardBuyer, cardSeller, card}) {
       }else if(!updateSellerDashboard.message) {
         console.log(updateSellerDashboard.message);   
       }else{
-        toNavigate("/paymentsuccesspage");
+        toNavigate(`/cards/${card.cardid}/payment/sucess/${cardSeller}`);
       }
     }
 

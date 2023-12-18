@@ -141,7 +141,7 @@ const CardPage = () => {
             <div className='card-details-upper'>
               <div className='card-picture' style={{backgroundImage: `url(${card.cardImg})`}}></div>
               <div className='card-details'>
-                <h2>{card.cardTitle}</h2>
+                <h2 style={{color:'#656464'}}>{card.cardTitle}</h2>
                 <div className='card-attributes'>
                   <div className='card-attributes-left'>
                     <p>Condition:</p>
@@ -156,8 +156,8 @@ const CardPage = () => {
                 </div>
                 <div className='card-transaction'>
                   <div className='cardpage-price'>
-                    <p>Price: </p>
-                    <p className='card-value'>&#8369; {card.cardPrice}</p>
+                    <p style={{color: '#656464'}}>Price: </p>
+                    <p className='card-value' style={{color: '#656464'}}>&#8369; {card.cardPrice}.00</p>
                   </div>
                   {card.uid != loggedInUser ? (
                     <>
