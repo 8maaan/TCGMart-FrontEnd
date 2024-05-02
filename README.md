@@ -1,6 +1,6 @@
 # TCGMart
 
-## Contributors/Authors
+## Contributors
 
 - [@Ribo](https://www.github.com/8maaan)
 - [@Sabejon](https://github.com/NifaNii)
