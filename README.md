@@ -5,10 +5,12 @@
 - [@Ribo](https://www.github.com/8maaan)
 - [@Sabejon](https://github.com/NifaNii)
 
-## Tech Stack
+## Tech Stack / Tools
 **Client:** React, MUI
 
 **Server:** Express, Spring boot, MySQL
+
+![Java](https://skillicons.dev/icons?i=html,css,javascript,react,spring,express,mysql) 
 
 ## Project Description
 
